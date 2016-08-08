@@ -31,6 +31,7 @@ $(document).ready(function () {
       sendRequest(transform, input);
     }
   });
+
   $('#input-code').focus(function () {
     $('#error-message').css("visibility", "hidden");
     $('#result-info').css('visibility', 'hidden');
