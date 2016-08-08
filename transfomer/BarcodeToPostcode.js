@@ -1,7 +1,6 @@
 'use strict';
 
 //barcode to postcode
-//| :::|| ::|:| ::||: :|::| :|:|: :::|| ::|:| ::||: :|::| :|:|: |
 function isLegalBarcode(barcodeString) {
   return /^\| [:| ]+\|$/.test(barcodeString);
 }

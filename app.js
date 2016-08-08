@@ -6,21 +6,18 @@
 const express = require('express');
 const BarcodeToPostcode = require('./transfomer/BarcodeToPostcode');
 const PostcodeToBarcode = require('./transfomer/PostcodeToBarcode');
-//const bodyParser = require('body-parser');
-const cors = require('cors');
 
 let app = express();
 let barcodeToPostcode = new BarcodeToPostcode();
 let postcodeToBarcode = new PostcodeToBarcode();
 
-//app.use(bodyParser.urlencoded({extend: true}));
-app.use(cors());
+app.use(express.static('postnet'));
 
-app.get('/express/to-Zipcode', function (req, res) {
+app.get('/express/toZipcode', function (req, res) {
   res.send(barcodeToPostcode.transferToPostCode(req.query.cmd));
 });
 
-app.get('/express/to-Barcode', function (req, res) {
+app.get('/express/toBarcode', function (req, res) {
   res.send(postcodeToBarcode.transferToBarcode(req.query.cmd));
 });
 

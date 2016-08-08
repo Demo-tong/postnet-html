@@ -21,7 +21,7 @@ section#transfomer, #history, h1 {
   color: #31708f;
 }
 
-span {
+span#error-message, span#result-info {
   visibility: visible;
 }
 
