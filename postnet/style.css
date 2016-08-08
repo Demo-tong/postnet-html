@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0
+}
+
+#box {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #afd9ee;
+  border: 1px solid #5e5e5e;
+
+}
+
+section#transfomer, #history, h1 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.info {
+  font-size: 20px;
+  color: #31708f;
+}
+
+span {
+  visibility: visible;
+}
+
+#error-message{
+  margin-left:90px;
+  color:red;
+}
+
+section#history {
+  margin: 120px;
+}
+
+button.btn {
+  opacity: 0.7;
+  width: 80px;
+}

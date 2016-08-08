@@ -1,0 +1,20 @@
+{
+  "name": "110-simple-base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine",
+    "start":"nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "jasmine": "^2.4.1",
+    "superagent": "^2.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0"
+  }
+}
