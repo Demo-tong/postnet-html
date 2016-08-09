@@ -21,9 +21,12 @@ section#transfomer, #history, h1 {
   color: #31708f;
 }
 
-span#error-message, span#result-info {
-  visibility: visible;
+span.info{
+  font-weight: bold;
 }
+/*span#error-message, span#result-info {
+  visibility: visible;
+}*/
 
 #error-message{
   margin-left:90px;

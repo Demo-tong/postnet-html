@@ -33,6 +33,7 @@ $(document).ready(function () {
   });
 
   $('#input-code').focus(function () {
+
     $('#error-message').css("visibility", "hidden");
     $('#result-info').css('visibility', 'hidden');
   });
