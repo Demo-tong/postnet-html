@@ -6,7 +6,7 @@ const app = require('../app');
 
 const request = supertest(app);
 
-describe('get', ()=> {
+describe('get/express/toBarcode', ()=> {
   it('should return correct result', (done)=> {
     const cmd = '12345';
     const expected = {
@@ -36,6 +36,28 @@ describe('get', ()=> {
 
     request
       .get('/express/toBarcode')
+      .query({cmd})
+      .expect(expected)
+      .end((err, res)=> {
+        if (err) {
+          done.fail(err);
+        } else {
+          done();
+        }
+      })
+  });
+});
+
+describe('get/express/toZipcode', ()=> {
+  it('should return correct result', (done)=> {
+    const cmd = '| :::|| ::|:| ::||: :|::| :|:|: :|:|: |';
+    const expected = {
+      error: '',
+      data: '12345'
+    };
+
+    request
+      .get('/express/toZipcode')
       .query({cmd})
       .expect(expected)
       .end((err, res)=> {
