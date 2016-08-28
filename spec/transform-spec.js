@@ -6,6 +6,23 @@ const app = require('../app');
 
 const request = supertest(app);
 
+function doError(err, done) {
+  if (err) {
+    done.fail(err);
+  } else {
+    done();
+  }
+}
+
+function sendRequest(router, cmd, expected, done) {
+  request
+    .get(`/express/${router}`)
+    .query({cmd})
+    .expect(expected)
+    .end((err, res)=> {
+      doError(err, done);
+    })
+}
 describe('get/express/toBarcode', ()=> {
   it('should return correct result', (done)=> {
     const cmd = '12345';
@@ -13,18 +30,7 @@ describe('get/express/toBarcode', ()=> {
       error: '',
       data: '|:::||::|:|::||::|::|:|:|::|:|:| cd is 5'
     };
-
-    request
-      .get('/express/toBarcode')
-      .query({cmd})
-      .expect(expected)
-      .end((err, res)=> {
-        if (err) {
-          done.fail(err);
-        } else {
-          done();
-        }
-      })
+    sendRequest('toBarcode', cmd, expected, done);
   });
 
   it('should return error information', (done)=> {
@@ -33,18 +39,7 @@ describe('get/express/toBarcode', ()=> {
       error: "the letter or the length of number is illegal(the length should be 5/9/10 contain' - ')",
       data: ''
     };
-
-    request
-      .get('/express/toBarcode')
-      .query({cmd})
-      .expect(expected)
-      .end((err, res)=> {
-        if (err) {
-          done.fail(err);
-        } else {
-          done();
-        }
-      })
+    sendRequest('toBarcode', cmd, expected, done);
   });
 });
 
@@ -56,17 +51,7 @@ describe('get/express/toZipcode', ()=> {
       data: '12345'
     };
 
-    request
-      .get('/express/toZipcode')
-      .query({cmd})
-      .expect(expected)
-      .end((err, res)=> {
-        if (err) {
-          done.fail(err);
-        } else {
-          done();
-        }
-      })
+    sendRequest('toZipcode', cmd, expected, done);
   });
 
   it('should return error of other word', (done)=> {
@@ -76,36 +61,16 @@ describe('get/express/toZipcode', ()=> {
       data: ''
     };
 
-    request
-      .get('/express/toZipcode')
-      .query({cmd})
-      .expect(expected)
-      .end((err, res)=> {
-        if (err) {
-          done.fail(err);
-        } else {
-          done();
-        }
-      })
+    sendRequest('toZipcode', cmd, expected, done);
   });
 
-  fit('should return error of digit check', (done)=> {
+  it('should return error of digit check', (done)=> {
     const cmd = '| :::|| ::|:| ::||: :|::| :|:|: :|:|| |';
     const expected = {
       error: 'it has uncorrect checkdigit',
       data: ''
     };
 
-    request
-      .get('/express/toZipcode')
-      .query({cmd})
-      .expect(expected)
-      .end((err, res)=> {
-        if (err) {
-          done.fail(err);
-        } else {
-          done();
-        }
-      })
+    sendRequest('toZipcode', cmd, expected, done);
   });
 });
