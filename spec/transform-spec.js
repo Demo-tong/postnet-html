@@ -68,4 +68,44 @@ describe('get/express/toZipcode', ()=> {
         }
       })
   });
+
+  it('should return error of other word', (done)=> {
+    const cmd = '| :::|| ::|:| ::||: :|::| :|:|: :::|| ::|:| ::||: :|::| :*|:: |';
+    const expected = {
+      error: "error input(only '|'':'' 'can be accepted and ' 'is must)",
+      data: ''
+    };
+
+    request
+      .get('/express/toZipcode')
+      .query({cmd})
+      .expect(expected)
+      .end((err, res)=> {
+        if (err) {
+          done.fail(err);
+        } else {
+          done();
+        }
+      })
+  });
+
+  fit('should return error of digit check', (done)=> {
+    const cmd = '| :::|| ::|:| ::||: :|::| :|:|: :|:|| |';
+    const expected = {
+      error: 'it has uncorrect checkdigit',
+      data: ''
+    };
+
+    request
+      .get('/express/toZipcode')
+      .query({cmd})
+      .expect(expected)
+      .end((err, res)=> {
+        if (err) {
+          done.fail(err);
+        } else {
+          done();
+        }
+      })
+  });
 });
