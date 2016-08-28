@@ -26,4 +26,24 @@ describe('get', ()=> {
         }
       })
   });
+
+  it('should return error information', (done)=> {
+    const cmd = '1234';
+    const expected = {
+      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain' - ')",
+      data: ''
+    };
+
+    request
+      .get('/express/toBarcode')
+      .query({cmd})
+      .expect(expected)
+      .end((err, res)=> {
+        if (err) {
+          done.fail(err);
+        } else {
+          done();
+        }
+      })
+  });
 });
