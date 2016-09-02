@@ -25,10 +25,10 @@ function getFormatNumbers(postCodeString) {
 
 function getCheckDigit(formatedNumbers) {
   let total = formatedNumbers.slice(0)
-          .reduce(function (fir, sec) {
-            return fir + sec;
-          });
-  return (10 - total % 10);
+    .reduce(function (fir, sec) {
+      return fir + sec;
+    });
+  return (total === 10) ? 0 : (10 - total % 10);
 }
 
 function generateBarcode(allZipCodes, checkDigit, formatedNumbers) {
